@@ -16,12 +16,14 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 const authRoutes = require('./routes/UserRoutes');
-app.use('/auth', authRoutes);
+app.use('/', authRoutes);
 
 app.get('/', (req, res) => res.render('index', { message: null }));
 app.get('/dashboard', verifyToken ,(req, res) => {
-    res.render('dashboard', { username: req.user.username });
+    res.render('dashboard', { username: req.user.username, role:req.user.role });
    });
-   
+app.get('/register', (req, res) => {
+    res.render('register', { message: null });
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Serveur démarré sur http://localhost:${PORT}`));

@@ -1,13 +1,24 @@
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
+//const { use } = require('../routes/UserRoutes');
 
 class User {
-    static async create(username, password) {
-        const hashedPassword = await bcrypt.hash(password, 10);
+    constructor(id,username,password,role){
+        this.id=id;
+        this.username=username;
+        this.password=password;
+        this.role=role;
+    }
+    async save() {
         return new Promise((resolve, reject) => {
-            db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], (err, result) => {
+            bcrypt.hash(this.password, 10, (err, hash) => {
                 if (err) reject(err);
-                else resolve(result);
+                const sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+                db.query(sql, [this.username, hash, this.role], (err, result) => {
+                    if (err) reject(err);
+                    this.id = result.insertId;
+                    resolve(this);
+                });
             });
         });
     }

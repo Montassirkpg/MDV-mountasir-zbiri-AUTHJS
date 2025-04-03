@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>Inscription</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <div class="container">
-        <h2>Connexion</h2>
+        <h2>Inscription</h2>
         <% if (message) { %>
             <p class="error"><%= message %></p>
         <% } %>
-        <form action="/login" method="POST">
+        <form action="/register" method="POST">
             <label for="username">Nom d'utilisateur :</label>
             <input type="text" id="username" name="username" required>
 
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Se connecter</button>
-        </form>
+            <label for="role">Rôle :</label>
+            <select id="role" name="role">
+                <option value="user">Utilisateur</option>
+                <option value="admin">Admin</option>
+            </select>
 
-        <p>Pas encore de compte ? <a href="/register" class="btn-register">Inscrivez-vous ici</a></p>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>Déjà un compte ? <a href="/">Connectez-vous ici</a></p>
     </div>
 </body>
 </html>
