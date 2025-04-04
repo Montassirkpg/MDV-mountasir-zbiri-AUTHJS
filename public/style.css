@@ -1,36 +1,167 @@
+/* Importation de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Réinitialisation globale */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Style du corps */
 body {
-    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background: url('https://source.unsplash.com/1600x900/?technology,abstract') no-repeat center center/cover;
 }
+
+/* Superposition de fond avec effet flou */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+/* Conteneur du formulaire */
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 350px;
 }
-input {
+
+/* Titre */
+h2 {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Champs du formulaire */
+label {
+    display: block;
+    color: white;
+    font-size: 14px;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+input, select {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-button {
-    background: #007BFF;
-    color: white;
+    margin-bottom: 15px;
     border: none;
-    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    transition: 0.3s ease-in-out;
 }
+
+input:focus, select:focus {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Bouton */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
 button:hover {
     background: #0056b3;
 }
-.message {
-    color: red;
+
+/* Lien vers inscription ou connexion */
+p {
+    margin-top: 15px;
+    color: white;
 }
+
+a {
+    color: #00c3ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Message d'erreur */
+.error {
+    color: #ff3b3b;
+    font-size: 14px;
+    background: rgba(255, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeIn 0.6s ease-in-out;
+}
+/* Style du menu déroulant (select) */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+select:focus {
+    background: rgba(255, 255, 255, 1);
+    border-color: #007bff;
+}
+.btn-google {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #db4437;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-google:hover {
+    background-color: #c1351d;
+}
+

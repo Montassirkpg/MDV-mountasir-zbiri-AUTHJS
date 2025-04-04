@@ -1,13 +1,51 @@
-const db = require('../config/db');
+const db = require('../config/db'); 
 const bcrypt = require('bcrypt');
-//const { use } = require('../routes/UserRoutes');
 
 class User {
-    constructor(id,username,password,role){
-        this.id=id;
-        this.username=username;
-        this.password=password;
-        this.role=role;
+    constructor(id, username, password, role, googleId = null) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.googleId = googleId;
+    }
+
+    static async findByUsername(username) {
+        const [rows] = await db.execute('SELECT * FROM users WHERE username = ?', [username]);
+        return rows.length ? new User(rows[0].id, rows[0].username, rows[0].password, rows[0].role, rows[0].googleId) : null;
+    }
+
+    static async findByGoogleId(googleId) {
+        try {
+            const [rows] = await db.query('SELECT * FROM users WHERE googleId = ?', [googleId]);
+            return rows.length ? new User(rows[0].id, rows[0].username, null, rows[0].role, rows[0].googleId) : null;
+        } catch (error) {
+            console.error("Erreur MySQL:", error);
+            return null;
+        }
+    }
+    
+
+    async create({ username, password, role, googleId = null }) {
+        const hashedPassword = password ? await bcrypt.hash(password, 10) : null;
+    
+        try {
+            const [result] = await db.query( 
+                'INSERT INTO users (username, password, role, googleId) VALUES (?, ?, ?, ?)',
+                [username, hashedPassword, role, googleId]
+            );
+    
+            console.log("Résultat SQL:", result); 
+    
+            if (!result || !result.insertId) {
+                throw new Error("Insertion échouée");
+            }
+    
+            return new User(result.insertId, username, hashedPassword, role, googleId);
+        } catch (error) {
+            console.error("Erreur MySQL lors de l'insertion :", error);
+            return null;
+        }
     }
     async save() {
         return new Promise((resolve, reject) => {
@@ -22,16 +60,8 @@ class User {
             });
         });
     }
-
-    static async findByUsername(username) {
-        return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
-                if (err) reject(err);
-                else resolve(results[0]);
-            });
-        });
-    }
-
+    
+        
     static async comparePassword(plainPassword, hashedPassword) {
         return bcrypt.compare(plainPassword, hashedPassword);
     }
