@@ -61,3 +61,16 @@ exports.verifyToken = (req, res, next) => {
         res.status(401).send('Token invalide');
     }
 };
+exports.getAllStudents = async (req, res) => {
+    if (req.session.userRole !== 'intervenant' && req.session.userRole !== 'admin') {
+        return res.status(403).send('Accès interdit');
+    }
+
+    try {
+        const students = await User.getAll();
+        res.render('students', { students });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des étudiants:', error);
+        res.status(500).send('Erreur serveur');
+    }
+};

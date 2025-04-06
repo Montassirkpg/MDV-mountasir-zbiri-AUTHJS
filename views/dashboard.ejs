@@ -9,7 +9,14 @@
 <body>
     <div class="container">
         <h2>Bienvenue sur votre tableau de bord <%= username %> !</h2>
-        <p>Votre rôle : <strong><%= role %></strong></p>
+        <p>Votre nom : <strong><%= username %></strong></p>
+        <p>Votre etes un : <strong><%= role %></strong></p>
+        <% if (role === 'admin' || role ==='Intervenant') { %>  
+            <a href="/students" class="btn-view-users">Voir la liste des utilisateurs</a>
+        <% } %>
+        <% if (role === 'admin') { %>  
+            <a href="/intervenants" class="btn-view-users">Voir la liste des Intervenant</a>
+        <% } %>
         <a href="/" class="logout">Déconnexion</a>
     </div>
 </body>

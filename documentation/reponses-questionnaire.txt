@@ -1,0 +1,88 @@
+--1--
+L’authentification est un mécanisme de sécurité qui permet de vérifier l’identité d’un utilisateur avant de lui accorder l’accès à une application ou une ressource.
+Elle repose généralement sur un identifiant (comme un nom d’utilisateur ou une adresse email) et un mot de passe, souvent sécurisé grâce à des techniques de hachage (ex : bcrypt).
+Il existe aussi d'autres méthodes comme l’authentification via des services tiers (OAuth avec Google, Facebook…), les tokens (JWT), les codes OTP envoyés par SMS ou email, ou encore la biométrie.
+L’authentification est une étape essentielle dans toute application sécurisée, car elle permet de filtrer les accès et de personnaliser les fonctionnalités selon le rôle ou le profil de l’utilisateur.
+Elle se distingue de l’autorisation, qui détermine les actions qu’un utilisateur authentifié est autorisé à effectuer.
+
+----------------------------------------------------
+
+--2--
+Autorisation : c’est le processus qui détermine ce que l’utilisateur a le droit de faire une fois qu’il est authentifié. 
+Elle dépend du rôle ou des permissions de l’utilisateur admin, étudiant.
+
+-----------------------------------------------------
+
+--3--
+Un facteur d'authentification est un élément utilisé pour vérifier l'identité d'un utilisateur.
+
+-----------------------------------------------------
+
+--4--
+Mot de passe/PIN - La méthode la plus répandue où l'utilisateur saisit une combinaison secrète de caractères qu'il est censé être le seul à connaître.
+Authentification biométrique - Utilise des caractéristiques physiques uniques de l'utilisateur comme les empreintes digitales, la reconnaissance faciale, le scan de l'iris ou la reconnaissance vocale.
+Authentification à deux facteurs (2FA) - Combine deux méthodes distinctes, généralement "quelque chose que vous savez" (mot de passe) et "quelque chose que vous possédez" (comme un code temporaire envoyé à votre téléphone ou généré par une application d'authentification).
+
+
+-----------------------------------------------------
+
+--5--
+Le hashage est un processus cryptographique qui transforme des données de longueur variable en une chaîne de caractères de longueur fixe, appelée "hash" ou "empreinte numérique". 
+Cette transformation est unidirectionnelle, ce qui signifie qu'il est pratiquement impossible de retrouver les données d'origine à partir du hash.
+
+-----------------------------------------------------
+
+--6--
+Le sel dans le hashage est une valeur aléatoire qui est ajoutée aux données avant de les hacher.
+Cette technique est particulièrement importante pour la sécurisation des mots de passe contre  les attaques par table arc-en-ciel et l'ugmentation de la complexité.
+
+-----------------------------------------------------
+
+--7--
+Le chiffrement est un processus qui transforme des données lisibles (texte en clair) en un format codé et incompréhensible (texte chiffré) à l'aide d'un algorithme et d'une clé. 
+Contrairement au hashage qui est unidirectionnel, le chiffrement est conçu pour être réversible - les données chiffrées peuvent être déchiffrées pour retrouver les données d'origine.
+
+-----------------------------------------------------
+--8--
+
+-----------------------------------------------------
+
+--9--
+En développant un système d'authentification, plusieurs aspects critiques doivent être considérés. 
+Au niveau architectural, privilégiez des solutions éprouvées comme OAuth 2.0 ou OpenID Connect plutôt que des implémentations maison, et isolez le système d'authentification des autres composants.
+Pour la sécurité des données, stockez uniquement des mots de passe hashés avec sel (bcrypt, Argon2), protégez les communications avec TLS, et utilisez des tokens sécurisés (JWT).
+
+-----------------------------------------------------
+
+--10--
+Le principe d'authentification multifacteur (MFA) repose sur la vérification de l'identité d'un utilisateur à travers au moins deux méthodes d'authentification différentes et indépendantes. 
+Cette approche renforce considérablement la sécurité en exigeant non seulement ce que l'utilisateur sait, mais aussi ce qu'il possède ou ce qu'il est.
+
+-----------------------------------------------------
+
+--11--
+Une attaque CSRF (Cross-Site Request Forgery) est une vulnérabilité qui force un utilisateur authentifié à exécuter des actions indésirables sur une application web sans qu'il en soit conscient.
+Dans une attaque CSRF, l'attaquant exploite le fait qu'un utilisateur est déjà authentifié sur un site cible. 
+-----------------------------------------------------
+
+--12--
+Dans le contexte du web, pour moi, une session représente la mémoire temporaire d'une interaction utilisateur avec un site, permettant de maintenir un état entre différentes pages malgré la nature sans état d'HTTP. 
+Les cookies sont de petits fichiers stockés par le navigateur pour se souvenir d'informations spécifiques à l'utilisateur ou au site, souvent utilisés pour identifier une session. 
+Les headers sont des métadonnées invisibles échangées entre le navigateur et le serveur lors de chaque requête et réponse. 
+-----------------------------------------------------
+
+--13--
+L'échange sécurisé d'informations entre un client web et un serveur web repose sur le protocole HTTPS. 
+Il utilise le chiffrement (principalement via TLS) pour garantir la confidentialité des données, des certificats numériques pour authentifier l'identité du serveur, et des mécanismes d'intégrité pour s'assurer que les données ne sont pas altérées pendant la transmission.
+-----------------------------------------------------
+--14--
+Un token JWT est une chaîne de caractères compacte et auto-suffisante, composée d'un header (métadonnées), d'un payload (informations ou "claims") et d'une signature.
+ Les JWT sont couramment utilisés pour l'authentification et l'autorisation dans les applications web et API.
+-----------------------------------------------------
+
+--15--
+OAuth 2.0 est un protocole d'autorisation qui permet à une application tierce d'obtenir un accès limité aux ressources d'un utilisateur sur un serveur, sans partager ses identifiants.
+Il résout les problèmes de sécurité et de contrôle d'accès en utilisant des tokens d'accès temporaires et révocables.
+Cela permet une interopérabilité sécurisée entre les applications et les services web.
+
+

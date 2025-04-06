@@ -25,7 +25,6 @@ class User {
         }
     }
     
-
     async create({ username, password, role, googleId = null }) {
         const hashedPassword = password ? await bcrypt.hash(password, 10) : null;
     
@@ -65,6 +64,15 @@ class User {
     static async comparePassword(plainPassword, hashedPassword) {
         return bcrypt.compare(plainPassword, hashedPassword);
     }
+    static async getAllStudents() {
+        const [rows] = await db.query('SELECT * FROM users WHERE role = ?', ['etudiant']);
+        return rows;  
+    }
+    static async getAllIntervenants() {
+        const [rows] = await db.query('SELECT * FROM users WHERE role = ?', ['intervenant']);
+        return rows;  
+    }
+    
 }
 
 module.exports = User;

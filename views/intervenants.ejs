@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des utilisateurs</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des utilisateurs</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Rôle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% intervenants.forEach(function(Intervenant) { %>
+                    <tr>
+                        <td><%= Intervenant.id %></td>
+                        <td><%= Intervenant.username %></td>
+                        <td><%= Intervenant.role %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <a href="/dashboard" class="back-to-dashboard">Retour au tableau de bord</a>
+    </div>
+</body>
+</html>

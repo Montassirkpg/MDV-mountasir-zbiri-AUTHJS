@@ -1,7 +1,4 @@
-/* Importation de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-/* Réinitialisation globale */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +6,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Style du corps */
 body {
     display: flex;
     justify-content: center;
@@ -18,7 +14,7 @@ body {
     background: url('https://source.unsplash.com/1600x900/?technology,abstract') no-repeat center center/cover;
 }
 
-/* Superposition de fond avec effet flou */
+
 body::before {
     content: "";
     position: absolute;
@@ -31,7 +27,7 @@ body::before {
     z-index: -1;
 }
 
-/* Conteneur du formulaire */
+
 .container {
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
@@ -42,14 +38,14 @@ body::before {
     width: 350px;
 }
 
-/* Titre */
+
 h2 {
     color: white;
     font-weight: 600;
     margin-bottom: 20px;
 }
 
-/* Champs du formulaire */
+
 label {
     display: block;
     color: white;
@@ -74,7 +70,7 @@ input:focus, select:focus {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Bouton */
+
 button {
     width: 100%;
     padding: 10px;
@@ -91,7 +87,6 @@ button:hover {
     background: #0056b3;
 }
 
-/* Lien vers inscription ou connexion */
 p {
     margin-top: 15px;
     color: white;
@@ -107,7 +102,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Message d'erreur */
+
 .error {
     color: #ff3b3b;
     font-size: 14px;
@@ -117,7 +112,7 @@ a:hover {
     margin-bottom: 15px;
 }
 
-/* Animation d'apparition */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -132,7 +127,7 @@ a:hover {
 .container {
     animation: fadeIn 0.6s ease-in-out;
 }
-/* Style du menu déroulant (select) */
+
 select {
     width: 100%;
     padding: 10px;
